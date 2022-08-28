@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://user:password@cluster0.o5j1hyu.mongodb.net/estoque_produto');
+mongoose.connect('mongodb+srv://IsabelaMarques7:lrds0210@cluster0.o5j1hyu.mongodb.net/estoque_produto');
 app.use(express.json());
 
 app.use(express.urlencoded({extended: true}));
@@ -19,13 +19,18 @@ app.use(function (req, res, next){
 
 //registrar a model
 require('./models/product');
+require('./models/category');
+
 
 
 //registrar rota
 const productRouter = require('./routes/product-route');
+const categoryRouter = require('./routes/category-route');
+
 const index = require('./routes/index');
 
 app.use('/', index);
 app.use('/products', productRouter)
+app.use('/categories', categoryRouter)
 
 module.exports = app;
